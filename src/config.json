@@ -41,8 +41,6 @@
   "RUN_KLAYOUT_XOR": 0,
   "RUN_KLAYOUT_DRC": 0,
 
-  "PL_MAX_PHI_COEFFICIENT": 1.0,
-
   "//": "Don't put clock buffers on the outputs",
   "DESIGN_REPAIR_BUFFER_OUTPUT_PORTS": 0,
 
