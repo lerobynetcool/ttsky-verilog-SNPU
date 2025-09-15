@@ -27,7 +27,7 @@ module tt_um_SNPU (
 
   //// cover a max of the chip with random number generators
 
-  wire [63:0][15:0] rands; // SystemVerilog style
+  wire [RND_N-1:0][15:0] rands; // SystemVerilog style
   genvar i;
   generate
     for (i = 0; i < RND_N; i = i + 1) begin : rnd_blocks
