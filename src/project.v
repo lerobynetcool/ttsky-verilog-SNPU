@@ -19,7 +19,7 @@ module tt_um_SNPU (
   // assign uio_oe  = 0;
   assign uio_oe  = 255; // use io pins as outputs
 
-  parameter RND_N = 40;
+  parameter RND_N = 36;
   parameter RND_N_addr = $clog2(RND_N);
 
   wire       freeze; assign freeze = ui_in[0];
