@@ -44,10 +44,3 @@ module funky_rnd(
 		.Qn(Qn_ignore)
 	);
 endmodule
-
-// module pseudo_rnd(
-// 	input wire CLK,
-// 	output wire[7:0] RND
-// );
-
-// endmodule
