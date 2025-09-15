@@ -24,29 +24,29 @@ module tt_um_SNPU (
 
   //// cover a max of the chip with random number generators
 
-  // wire [31:0][15:0] rands; // SystemVerilog style
-  // genvar i;
-  // generate
-  //   for (i = 0; i < 32; i = i + 1) begin : rnd_blocks
-  //     assign rands[i] = i[15:0];  // pad i up to 16 bits, debugging
-  //     // funky_rnd_n #(.N(16)) rnd_bank (
-  //     //     .G(freeze),
-  //     //     .R(rands[i])
-  //     // );
-  //   end
-  // endgenerate
+  wire [31:0][15:0] rands; // SystemVerilog style
+  genvar i;
+  generate
+    for (i = 0; i < 32; i = i + 1) begin : rnd_blocks
+      // assign rands[i] = i[15:0];  // pad i up to 16 bits, debugging
+      funky_rnd_n #(.N(16)) rnd_bank (
+        .G(freeze),
+        .R(rands[i])
+      );
+    end
+  endgenerate
 
-  // wire [15:0] selected_rands;
-  // assign selected_rands = rands[addr];
-  // assign uo_out  = selected_rands[15:8];
-  // assign uio_out = selected_rands[7:0];
+  wire [15:0] selected_rands;
+  assign selected_rands = rands[addr];
+  assign uo_out  = selected_rands[15:8];
+  assign uio_out = selected_rands[7:0];
 
   //// no copy paste version
 
-  wire [15:0] rands;
-  funky_rnd_n #(.N(16)) hello (.G(freeze),.R(rands));
-  assign uo_out  = rands[15:8]; // upper 8 bits
-  assign uio_out = rands[7:0];  // lower 8 bits
+  // wire [15:0] rands;
+  // funky_rnd_n #(.N(16)) hello (.G(freeze),.R(rands));
+  // assign uo_out  = rands[15:8]; // upper 8 bits
+  // assign uio_out = rands[7:0];  // lower 8 bits
 
   //// copy paste version
 
