@@ -43,4 +43,23 @@ module funky_rnd(
 		.Q(R),
 		.Qn(Qn_ignore)
 	);
+	// // debugging
+	// assign R = G;
+endmodule
+
+module funky_rnd_n #(
+	parameter N = 8
+)(
+	input wire G,
+	output wire [N-1:0] R
+);
+	genvar i;
+	generate
+		for (i = 0; i < N; i = i + 1) begin : rnd_gen
+			funky_rnd rnd_inst (
+				.G(G),
+				.R(R[i])
+			);
+		end
+	endgenerate
 endmodule
