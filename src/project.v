@@ -19,15 +19,18 @@ module tt_um_SNPU (
   // assign uio_oe  = 0;
   assign uio_oe  = 255; // use io pins as outputs
 
+  parameter RND_N = 32;
+  parameter RND_N_addr = $clog2(RND_N);
+
   wire       freeze; assign freeze = ui_in[0];
-  wire [4:0] addr;   assign addr   = ui_in[5:1];
+  wire [RND_N_addr-1:0] addr;   assign addr   = ui_in[RND_N_addr:1];
 
   //// cover a max of the chip with random number generators
 
-  wire [31:0][15:0] rands; // SystemVerilog style
+  wire [63:0][15:0] rands; // SystemVerilog style
   genvar i;
   generate
-    for (i = 0; i < 32; i = i + 1) begin : rnd_blocks
+    for (i = 0; i < RND_N; i = i + 1) begin : rnd_blocks
       // assign rands[i] = i[15:0];  // pad i up to 16 bits, debugging
       funky_rnd_n #(.N(16)) rnd_bank (
         .G(freeze),
