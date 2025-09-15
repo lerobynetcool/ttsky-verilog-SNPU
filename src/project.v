@@ -50,7 +50,7 @@ module funky_rnd(
   );
 endmodule
 
-module tt_um_SNPU (
+module tt_um_random_latch (
   input  wire [7:0] ui_in,    // Dedicated inputs
   output wire [7:0] uo_out,   // Dedicated outputs
   input  wire [7:0] uio_in,   // IOs: Input path
